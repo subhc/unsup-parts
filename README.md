@@ -1,4 +1,4 @@
-## Unsupervised Part Discovery with Contrastive Reconstruction
+## Unsupervised Part Discovery from Contrastive Reconstruction
 #### Subhabrata Choudhury, Iro Laina, Christian Rupprecht, Andrea Vedaldi
 [![Conference](https://img.shields.io/badge/NeurIPS-2021-purple?style=flat-square&color=f1e3ff&labelColor=69448c)](https://nips.cc/Conferences/2021/ScheduleMultitrack?event=26254)  
 
