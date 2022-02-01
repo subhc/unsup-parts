@@ -12,7 +12,7 @@ conda activate unsup-parts
 wget https://www.robots.ox.ac.uk/~vgg/research/unsup-parts/files/checkpoints.tar.gz
 tar zxvf checkpoints.tar.gz
 ```
-The project uses Weights & Biases for visualization, please update `wandb_user` in `train.py` to your username
+The project uses Weights & Biases for visualization, please update `wandb_userid` in `train.py` to your username
 ### Data Preparation:
 
 #### CUB-200-2011
@@ -33,7 +33,7 @@ data
     │   └── segmentations
     └── supervisedlabels
 ```
-example
+Example
 ```shell
 mkdir -p data/CUB/
 cd data/CUB/
@@ -97,7 +97,7 @@ You can find evaluation code in the [evaluation folder](evaluation).
 | DeepFashion (pth) | 181MB| [here](https://www.robots.ox.ac.uk/~vgg/research/unsup-parts/files/checkpoints/DeepFashion/model_100000.pth) |
 | Both (tar.gz) | 351MB| [here](https://www.robots.ox.ac.uk/~vgg/research/unsup-parts/files/checkpoints.tar.gz) |
 
-Please move the `pth` files in the `checkpoints/CUB` and `checkpoints/DeepFashion` folder respectively.
+Please move the `pth` files in the `checkpoints/CUB` and `checkpoints/DeepFashion` folders respectively. 
 
 
 ### Abstract:
@@ -112,3 +112,5 @@ Please move the `pth` files in the `checkpoints/CUB` and `checkpoints/DeepFashio
  year = {2021}
 }
 ```   
+### Acknowledgement
+Code is largely based on [SCOPS](https://github.com/NVlabs/SCOPS).
