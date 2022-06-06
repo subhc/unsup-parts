@@ -14,7 +14,6 @@ old/
 /data/
 /output/
 /slurm/
-/models/
 /logs/
 /dist/
 nr_*/
@@ -29,27 +28,10 @@ slurm-*
 jobs.sh
 captions/*
 *.tar
-CUB/data_final.txt
 # C extensions
 *.so
-cnn/filelist/*
-CUB/
-CUB/*.pickle
-runs2/
-slurm2/
-glove.6B.300d.txt.gz
-glove.840B.300d.txt.gz
-old.tar
-visualize2/
-visualize3/
-CUB/txts
-CUB/extras
-FLO/txts
 /cache/
 /cache
-/FLO/
-/old/
-/visualize/dataset/
 
 # Distribution / packaging
 .Python
@@ -221,6 +203,3 @@ dmypy.json
  */**/*.dylib*
  test/data/legacy_serialized.pt
  *~
-/visualize/cub.json
-/visualize/test.json
-/visualize/val.json
