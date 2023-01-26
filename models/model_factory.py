@@ -49,6 +49,12 @@ def model_generator(args, add_bg_mask=True):
             saved_state_dict = model_zoo.load_url(restore_from)
         else:
             saved_state_dict = torch.load(restore_from)
+        optimizer_state_dict = None
+        if 'optimizer_state_dict' in saved_state_dict:
+            optimizer_state_dict = saved_state_dict['optimizer_state_dict']
+        if 'model_state_dict' in saved_state_dict:
+            # Trainer.save_model saves dict
+            saved_state_dict = saved_state_dict['model_state_dict']
 
         saved_state_dict = dict([(k.replace('module.', ''), v) for k, v in saved_state_dict.items()])
         # only copy the params that exist in current model (caffe-like)
@@ -58,4 +64,4 @@ def model_generator(args, add_bg_mask=True):
                 new_params[name].copy_(saved_state_dict[name])
         model.load_state_dict(new_params)
 
-    return model
+    return model, optimizer_state_dict
