@@ -57,7 +57,7 @@ class Trainer(nn.Module):
         print("Nondet")
 
         # create network
-        model = model_generator(args, add_bg_mask=False)
+        model, optimizer_state_dict = model_generator(args, add_bg_mask=False)
         model.train()
         model.cuda(args.gpu)
         self.model = model
@@ -94,7 +94,11 @@ class Trainer(nn.Module):
         # Initialize optimizers.
         self.optimizer_seg = optim.SGD(self.model.optim_parameters(args),
                                        lr=args.learning_rate, momentum=args.momentum, weight_decay=args.weight_decay)
-        self.optimizer_seg.zero_grad()
+        if optimizer_state_dict is not None:
+            # resume training from checkpoint
+            self.optimizer_seg.load_state_dict(optimizer_state_dict)
+        else:
+            self.optimizer_seg.zero_grad()
 
         # visualizor
         self.viz = Visualizer(args)
