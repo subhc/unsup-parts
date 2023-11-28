@@ -35,7 +35,7 @@ def main(cfg: DictConfig):
     cfg = dict(cfg)
     if cfg['dataset_name'] is not None:
         cfg['dataset'] = cfg['dataset_name']
-    wandb.init(project='unsup-parts', entity='wandb_userid')
+    wandb.init(project='unsup-parts')
     wandb.config.update(cfg)
     args = wandb.config
     cudnn.enabled = True

@@ -18,7 +18,7 @@ input_size: 256
 kp_threshold: 6
 lambda_bg: 10
 lambda_contrastive: 2.3e3
-lambda_eqv: 5.7e3
+lambda_eqv: 5.7e4
 lambda_eqv_bg: 0
 lambda_rgb: 3e1
 lambda_variance: 0
@@ -36,7 +36,7 @@ num_parts: 4
 num_steps: 100000
 num_workers: 8
 power: 0.9
-pascal_class: car
+pascal_class: dog
 random_mirror: false
 random_scale: false
 random_scale_high: 2.0
