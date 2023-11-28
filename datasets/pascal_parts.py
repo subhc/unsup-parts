@@ -115,14 +115,18 @@ class PPDataset(Dataset):
 
         annotation_folder = f'{opts.dataset_root}/VOCdevkit_2010/Annotations_Part/'
         images_folder = f'{opts.dataset_root}/VOCdevkit_2010/VOC2010/JPEGImages/'
-        cls = opts.pascal_class
+        cls_list = opts.pascal_class
         mat_filenames = os.listdir(annotation_folder)
-        voc_list = {str(s) for s in np.loadtxt(f'{opts.dataset_root}/VOCdevkit_2010/VOC2010/ImageSets/Main/{cls}_{"train" if split == "train" else "val"}.txt', dtype=str)[:, 0]}
+        voc_list = set([])
+        for cls in cls_list:
+            voc_cls_list = {str(s) for s in np.loadtxt(f'{opts.dataset_root}/VOCdevkit_2010/VOC2010/ImageSets/Main/{cls}_{"train" if split == "train" else "val"}.txt', dtype=str)[:, 0]}
+            voc_list = voc_list.union(voc_cls_list)
+
         for idx, annotation_filename in enumerate(tqdm(mat_filenames)):
             if annotation_filename.split('.')[0] in voc_list:
                 annotations = load_annotations(os.path.join(annotation_folder, annotation_filename))
                 for obj in annotations["objects"]:
-                    if obj["class"] == cls:
+                    if obj["class"] in cls_list:
                         bbox = bbox2(obj['mask'])
                         mask = np.zeros_like(obj['mask'])
                         if pct_area(obj['mask'], bbox) > (0.20 if split == 'test' else 0.10):
@@ -135,7 +139,7 @@ class PPDataset(Dataset):
                             self.images.append(images_folder + annotation_filename[:annotation_filename.rfind(".")] + ".jpg")
                             self.masks.append(mask.astype(np.uint8))
 
-        print(f"Total {split}: {len(voc_list)} {cls} {split}: {len(self.images)}")
+        print(f"Total {split}: {len(voc_list)} {cls_list} {split}: {len(self.images)}")
 
     @staticmethod
     def only_file_names(lst):

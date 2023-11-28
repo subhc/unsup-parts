@@ -6,6 +6,8 @@ Licensed under the CC BY-NC-SA 4.0 license (https://creativecommons.org/licenses
 import copy
 import glob
 import os
+os.environ["CUDA_VISIBLE_DEVICES"]= "1"
+
 import os.path as osp
 import shutil
 import sys
@@ -13,6 +15,7 @@ from pathlib import Path
 from types import SimpleNamespace
 
 import cv2
+
 
 # solve potential deadlock https://github.com/pytorch/pytorch/issues/1355
 cv2.setNumThreads(0)
@@ -148,7 +151,7 @@ def main(cfg: DictConfig):
             print('save model ...')
             trainer.save_model(osp.join(wandb.run.dir.replace('/wandb/', '/outputs/'), 'model_' + str(args.num_steps) + '.pth'), i_iter)
             break
-        if i_iter % args.save_pred_every == 0 and i_iter != 0:
+        if i_iter % args.save_pred_every == 0:
             print('taking snapshot ...')
             trainer.save_model(osp.join(wandb.run.dir.replace('/wandb/', '/outputs/'), 'model_' + str(i_iter) + '.pth'), i_iter)
 
