@@ -31,7 +31,7 @@ def model_generator(args, add_bg_mask=True):
         model = Res50_Deeplab(num_classes=args.num_parts+add_bg_mask)
         if restore_from is None:
             restore_from = PRETRAINED_MODEL['resnet-50-caffe']
-    elif args.model == 'DeepLab_2branch':
+    elif args.model == 'DeepLab101_2branch':
         model = Res101_Deeplab_2branch(num_classes=args.num_parts+add_bg_mask)
         if restore_from is None:
             restore_from = PRETRAINED_MODEL['resnet-101-caffe']

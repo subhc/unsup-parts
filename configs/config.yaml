@@ -26,7 +26,7 @@ lambda_sc: 5
 layer_len: -1
 learning_rate: 1e-05
 learning_rate_w: 0.01
-model: DeepLab50_2branch
+model: DeepLab101_2branch
 model_type: new
 momentum: 0.9
 no_sal_masking: false
