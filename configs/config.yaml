@@ -23,6 +23,7 @@ lambda_eqv_bg: 0
 lambda_rgb: 3e1
 lambda_variance: 0
 lambda_sc: 5
+# lambda_sc: 50
 layer_len: -1
 learning_rate: 1e-05
 learning_rate_w: 0.01
@@ -33,8 +34,8 @@ no_sal_masking: false
 num_classes: 25
 num_part_names: 4
 num_parts: 4
-# num_steps: 100000
-num_steps: 200000
+num_steps: 100000
+# num_steps: 200000
 num_workers: 8
 power: 0.9
 pascal_class: ["dog", "sheep", "cat"]
